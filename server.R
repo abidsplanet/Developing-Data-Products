@@ -1,6 +1,6 @@
 library(shiny)
 require(rCharts)
-
+library(markdown)
 
 shinyServer(function(input, output) {
         output$myChart <- renderChart({
