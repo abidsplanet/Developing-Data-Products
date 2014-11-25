@@ -1,25 +1,23 @@
-require(rNVD3)
-
+library(shiny)
+require(rCharts)
 shinyUI(
-        navbarPage("HairEyeColor Database Explorer",
-                tabPanel("HairEyeColor",
-                         sidebarPanel(
-                           selectInput(inputId = "gender",
-                                       label = "Choose Gender",
-                                       choices = c("Male", "Female"),
-                                       selected = "Male"),
-                           selectInput(inputId = "type",
-                                       label = "Choose Chart Type",
-                                       choices = c("multiBarChart", "multiBarHorizontalChart"),
-                                       selected = "multiBarChart"),
-                           checkboxInput(inputId = "stack",
-                                         label = strong("Stack Bars?"),
-                                         value = FALSE)
-                         ),
-                         mainPanel(
-                           showOutput("myChart")
-                         )
+        navbarPage("Iris Database Explorer",
+                tabPanel("Iris",
+                        sidebarPanel(
+                                selectInput(inputId = "x",
+                                    label = "Choose X",
+                                    choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+                                    selected = "SepalLength"),
+                                selectInput(inputId = "y",
+                                    label = "Choose Y",
+                                    choices = c('SepalLength', 'SepalWidth', 'PetalLength', 'PetalWidth'),
+                                    selected = "SepalWidth")
+                        ),
+                mainPanel(
+                        showOutput("myChart", "polycharts")
+                        )
                 ),
+                
                 
                 tabPanel("About",
                          mainPanel(
