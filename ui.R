@@ -1,5 +1,6 @@
 library(shiny)
 require(rCharts)
+library(markdown)
 shinyUI(
         navbarPage("Iris Database Explorer",
                 tabPanel("Iris",
