@@ -1,10 +1,14 @@
-require(rNVD3)
+library(shiny)
+require(rCharts)
+
+
 shinyServer(function(input, output) {
-  output$myChart <- renderChart({
-    hair_eye = as.data.frame(HairEyeColor)
-    p6 <- nvd3Plot(Freq ~ Hair | Eye, data = subset(hair_eye, Sex == input$gender), 
-                   type = input$type, id = 'myChart', width = 800)
-    p6$chart(color = c('brown', 'blue', '#594c26', 'green'), stacked = input$stack)
-    return(p6)
-  })
+        output$myChart <- renderChart({
+                names(iris) = gsub("\\.", "", names(iris))
+                p1 <- rPlot(input$x, input$y, data = iris, color = "Species", 
+                            facet = "Species", type = 'point')
+                p1$addParams(dom = 'myChart')
+                return(p1)
+        })
+        
 })
